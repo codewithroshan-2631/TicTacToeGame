@@ -48,10 +48,14 @@ boxes.forEach((box) => {
 });
 
 const gameDraw = () => {
-  msg.innerText = `Game was a Draw.`;
-  msgContainer.classList.remove("hide");
-  disableBoxes();
+  disableBoxes(); // Prevent more moves
+//set a time
+  setTimeout(() => {
+    msg.innerText = `Game was a Draw.`;  // Show draw message
+    msgContainer.classList.remove("hide");
+  }, 1000); // 
 };
+
 
 const disableBoxes = () => {
   for (let box of boxes) {
@@ -67,10 +71,15 @@ const enableBoxes = () => {
 };
 
 const showWinner = (winner) => {
-  msg.innerText = `Congratulations, Winner is ${winner}`;
-  msgContainer.classList.remove("hide");
-  disableBoxes();
+  disableBoxes(); // stop the game immediately
+
+  // set a tme 
+  setTimeout(function () {
+    msg.innerText = `Congratulations, ${winner} is the Winner!`;
+    msgContainer.classList.remove("hide");
+  }, 1000); // wait 1 seconds
 };
+
 
 const checkWinner = () => {
   for (let pattern of winPatterns) {
@@ -85,7 +94,11 @@ const checkWinner = () => {
       }
     }
   }
+
 };
+
+
+
 
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
